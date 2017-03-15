@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B32383081E78C9E90080D115 /* GameEffects.sks in Resources */ = {isa = PBXBuildFile; fileRef = B32383071E78C9E90080D115 /* GameEffects.sks */; };
 		B3677C061E761E5F00FB4933 /* Obstacle.sks in Resources */ = {isa = PBXBuildFile; fileRef = B3677C051E761E5F00FB4933 /* Obstacle.sks */; };
 		B3677C081E762A4200FB4933 /* MSButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3677C071E762A4200FB4933 /* MSButtonNode.swift */; };
 		B37D98901E74D20B003EC4E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37D988F1E74D20B003EC4E9 /* AppDelegate.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B32383071E78C9E90080D115 /* GameEffects.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameEffects.sks; sourceTree = "<group>"; };
 		B3677C051E761E5F00FB4933 /* Obstacle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Obstacle.sks; sourceTree = "<group>"; };
 		B3677C071E762A4200FB4933 /* MSButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSButtonNode.swift; sourceTree = "<group>"; };
 		B37D988C1E74D20B003EC4E9 /* HoppyBunny.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HoppyBunny.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +79,7 @@
 				B37D98AC1E74D3F2003EC4E9 /* Hero.sks */,
 				B37D98931E74D20B003EC4E9 /* Actions.sks */,
 				B3677C051E761E5F00FB4933 /* Obstacle.sks */,
+				B32383071E78C9E90080D115 /* GameEffects.sks */,
 				B37D98AE1E74DAF3003EC4E9 /* CGFloat+Extensions.swift */,
 				B3677C071E762A4200FB4933 /* MSButtonNode.swift */,
 				B37D98951E74D20B003EC4E9 /* GameScene.swift */,
@@ -165,6 +168,7 @@
 				B37D98AB1E74D294003EC4E9 /* sfx_goal.caf in Resources */,
 				B37D98A01E74D20B003EC4E9 /* LaunchScreen.storyboard in Resources */,
 				B37D98AD1E74D3F2003EC4E9 /* Hero.sks in Resources */,
+				B32383081E78C9E90080D115 /* GameEffects.sks in Resources */,
 				B37D98941E74D20B003EC4E9 /* Actions.sks in Resources */,
 				B37D98AA1E74D294003EC4E9 /* sfx_flap.caf in Resources */,
 				B3677C061E761E5F00FB4933 /* Obstacle.sks in Resources */,

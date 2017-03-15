@@ -26,6 +26,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //UI Connections
     var buttonRestart : MSButtonNode!
     var gameState : GameSceneState = .Active
+    var scoreLabel : SKLabelNode!
+    var points = 0
     
     override func didMove(to view: SKView) {
         //Set up you scene here
@@ -44,6 +46,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //Set UI connections
         buttonRestart = self.childNode(withName: "buttonRestart") as! MSButtonNode
+        scoreLabel = self.childNode(withName: "scoreLabel") as! SKLabelNode
         
         buttonRestart.selectedHandler = {
             
@@ -62,11 +65,37 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         // hide restart button
         buttonRestart.state = .Hidden
+        
+        //Resets score label
+        scoreLabel.text = String(points)
+        
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
         //Ensure only called while game running
         if gameState != .Active { return }
+        
+        //Get references to bodies involved in collision
+        let contactA : SKPhysicsBody = contact.bodyA
+        let contactB : SKPhysicsBody = contact.bodyB
+        
+        //Get references to the physics body parent node
+        let nodeA = contactA.node!
+        let nodeB = contactB.node!
+        
+        //Did our hero pass through the 'goal'?
+        if nodeA.name == "goal" || nodeB.name == "goal" {
+            
+            //Inrement points
+            points += 1
+            
+            //Update score label
+            scoreLabel.text = String(points)
+            
+            //We can return node
+            return
+            
+        }
         
         //Hero touches anythin game over
         
@@ -84,6 +113,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //Show restart button
         buttonRestart.state = .Active
+        
+        //Create our hero death action
+        let heroDeath = SKAction.run({
+            
+            //put our her face down in the dirt
+            self.hero.zRotation = CGFloat(-90).degreesToRadians()
+            //Stop hero from colliding with anything else
+            self.hero.physicsBody?.collisionBitMask = 0
+            
+            //Load the shake action resource
+            let shakeScene : SKAction = SKAction.init(named: "Shake")!
+            
+            //loop through all nodes
+            for node in self.children {
+                //Apply effect each ground node
+                node.run(shakeScene)
+            }
+        })
+        
+        //Run Action
+        hero.run(heroDeath)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -91,6 +141,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //Disable touch if game no longer active
         if gameState != .Active { return }
+        
+        //Reset velocity, helps improve response against cumulative falling velocity
+        hero.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
         
         //Apply vertical implulse
         hero.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 250))
